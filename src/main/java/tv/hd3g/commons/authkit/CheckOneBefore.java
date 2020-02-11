@@ -14,25 +14,17 @@
  * Copyright (C) hdsdi3g for hd3g.tv 2019
  *
  */
-package tv.hd3g.commons;
+package tv.hd3g.commons.authkit;
 
-import java.util.Random;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-public interface CipherService {
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-	Random getSecureRandom();
-
-	byte[] cipherFromString(String text);
-
-	String unCipherToString(byte[] rawData);
-
-	/**
-	 * @param clearData will be wipe after call.
-	 */
-	byte[] cipherFromData(byte[] clearData);
-
-	byte[] unCipherToData(byte[] rawData);
-
-	String computeSHA3FromString(String text);
-
+@Retention(RUNTIME)
+@Target({ TYPE, METHOD })
+public @interface CheckOneBefore {
+	CheckBefore[] value();
 }
