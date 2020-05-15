@@ -17,6 +17,32 @@
 		<java.version>11</java.version>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>tv.hd3g.commons</groupId>
+			<artifactId>codepolicyvalidation</artifactId>
+			<version>0.0.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.26.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<organization>
 		<name>hd3g.tv</name>
 		<url>https://hd3g.tv</url>
@@ -28,7 +54,7 @@
 			<organization>hd3g.tv</organization>
 			<organizationUrl>https://hd3g.tv</organizationUrl>
 		</developer>
-	</developers>	
+	</developers>
 	<scm>
 		<connection>scm:git:git://github.com/hdsdi3g/interfaces.git</connection>
 		<developerConnection>scm:git:ssh://github.com/hdsdi3g/interfaces.git</developerConnection>
@@ -108,6 +134,25 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>1.6</version>
@@ -122,7 +167,7 @@
 							<gpgArguments>
 								<arg>--pinentry-mode</arg>
 								<arg>loopback</arg>
-							</gpgArguments> 
+							</gpgArguments>
 							<passphraseServerId>${gpg.keyname}</passphraseServerId>
 						</configuration>
 					</execution>
